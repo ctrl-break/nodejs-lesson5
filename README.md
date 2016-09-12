@@ -1,13 +1,26 @@
 #Lesson 5
 
-Вариант А, доработка примера из урока:
-Параметры подключения к БД вынести в модуль config.js
-Использовать для работы с БД connectionPool
-Реализовать методы редактирования и удаления записей.
-Добавить опцию для указания приоритета задачи.  
+Создать свою модель CRUD (create-read-update-delete)  
 
-Вариант B, своя модель CRUD (create-read-update-delete):
-Реализовать пункты задания из варианта А применительно к любой
-таблице в БД (например, для статей в блоге и т.п.). В дальнейшем вы
-сможете использовать этот модуль в качестве компонента для работы
-с данными в своем приложении.
+**Usage**  
+` var init = require('./crud.js');
+
+  // connection - mysql module connection
+  let crudObj = new init.crud( connection, 'tablename' );
+
+  // create ( obj )
+  crudObj.create( {'text':'task 10', 'completed' : 'true'} );
+
+  // read all
+  crudObj.read( );
+
+  // update ( newObj, condition)
+  // condition is id number
+  crudObj.update( {'text':'NEW task', 'completed' : 'false'}, 8 );
+
+  // read where id = 8
+  crudObj.read( 8 );
+
+  // delete where id = 10
+  crudObj.delete( 10 );
+`  

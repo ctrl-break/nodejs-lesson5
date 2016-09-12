@@ -1,7 +1,7 @@
 {
   "name": "lesson5",
   "version": "1.0.0",
-  "description": "Вариант А, доработка примера из урока: Параметры подключения к БД вынести в модуль config.js Использовать для работы с БД connectionPool Реализовать методы редактирования и удаления записей. Добавить опцию для указания приоритета задачи.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ctrl-break/nodejs-lesson5/issues"
   },
-  "homepage": "https://github.com/ctrl-break/nodejs-lesson5#readme"
+  "homepage": "https://github.com/ctrl-break/nodejs-lesson5#readme",
+  "dependencies": {
+    "mysql": "^2.11.1"
+  }
 }

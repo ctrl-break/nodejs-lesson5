@@ -7,7 +7,6 @@ module.exports.crud = function(conn, table) {
       let result = this.connection.query(`INSERT INTO ${this.tableName} SET ?;`, obj, function (err, info) {
           if (err)
             throw err;
-
       });
     }
 
@@ -15,7 +14,6 @@ module.exports.crud = function(conn, table) {
       let query = `SELECT * FROM ${this.tableName}`;
       if (condition) query += ` WHERE \`id\` = ${condition}`;
       query += ";"
-      console.log(query);
       let result = this.connection.query( query, function (err, rows) {
         if (err)
           throw err;

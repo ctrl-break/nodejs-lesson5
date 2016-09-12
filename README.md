@@ -2,7 +2,10 @@
 
 Создать свою модель CRUD (create-read-update-delete)  
 
+![Image of CRUD](http://radzserg.com/wp-content/uploads/2016/04/mongodb-crud-operations1.png)
+
 **Usage**  
+```javascript
     var init = require('./crud.js');  
 
     // connection - mysql module connection  
@@ -23,3 +26,4 @@
 
     // delete where id = 10  
     crudObj.delete( 10 );   
+```

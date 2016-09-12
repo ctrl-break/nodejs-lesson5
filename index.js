@@ -1,7 +1,8 @@
-// Использование пула соединений
+'use strict';
+
 var mysql = require('mysql');
 
-var commands = require('./crud.js');
+var init = require('./crud.js');
 
 // Настройка пула соединения
 var connectionPool = mysql.createPool({
@@ -16,15 +17,18 @@ connectionPool.getConnection(function (err, connection) {
   if (err)
     throw err;
 
-  //commands.create( connection, 'todos', {'text':'some task', 'completed' : 'false'} );
+  let crudObj = new init.crud( connection, 'todos' );
 
-  commands.read( connection, 'todos');
+  crudObj.create( connection, 'todos', {'text':'task 10', 'completed' : 'true'} );
 
-  commands.update( connection, 'todos', {'text':'some NEW task', 'completed' : 'false'}, 'id=8');
+  crudObj.read( ); // read all
 
-  commands.read( connection, 'todos', 'id=8');
+  crudObj.update( {'text':'NEW task', 'completed' : 'false'}, 8 );
 
-  //commands.delete( connection, 'todos', 'id=7' );
+  crudObj.read( 8 ); // read where ID = 8
+
+  crudObj.delete( 9 );
+  crudObj.read( );
 
   connection.release();
 

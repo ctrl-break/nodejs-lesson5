@@ -1,39 +1,45 @@
+module.exports.crud = function(conn, table) {
 
-module.exports.create = ( connection, tableName, obj) => {
-  let result = connection.query(`INSERT INTO ${tableName} SET ?;`, obj, function (err, info) {
-      if (err)
-        throw err;
+    this.connection = conn;
+    this.tableName = table;
 
-  });
-}
+    this.create = (obj) => {
+      let result = this.connection.query(`INSERT INTO ${this.tableName} SET ?;`, obj, function (err, info) {
+          if (err)
+            throw err;
 
-module.exports.read = (connection, tableName, condition) => {
-  let query = `SELECT * FROM ${tableName}`;
-  if (condition) query += ` WHERE ${condition}`;
-  query += ";"
-  let result = connection.query( query, function (err, rows) {
-    if (err)
-      throw err;
-    console.log(rows);
-  });
-}
+      });
+    }
 
-module.exports.update = (connection, tableName, obj, condition) => {
-  let query = `UPDATE ${tableName} SET ?`;
-  if (condition) query += ` WHERE ${condition}`;
-  query += ";"
-  let result = connection.query( query, obj, function (err, info) {
-      if (err)
-        throw err;
-  });
-}
+    this.read = (condition) => {
+      let query = `SELECT * FROM ${this.tableName}`;
+      if (condition) query += ` WHERE \`id\` = ${condition}`;
+      query += ";"
+      console.log(query);
+      let result = this.connection.query( query, function (err, rows) {
+        if (err)
+          throw err;
+        console.log(rows);
+      });
+    }
 
-module.exports.delete = (connection, tableName, condition) => {
-  let query = `DELETE FROM ${tableName}`;
-  if (condition) query += ` WHERE ${condition}`;
-  query += ";"
-  let result = connection.query( query, function (err, info) {
-      if (err)
-        throw err;
-  });
-}
+    this.update = (obj, condition) => {
+      let query = `UPDATE ${this.tableName} SET ?`;
+      if (condition) query += ` WHERE \`id\` = ${condition}`;
+      query += ";"
+      let result = this.connection.query( query, obj, function (err, info) {
+          if (err)
+            throw err;
+      });
+    }
+
+    this.delete = (condition) => {
+      let query = `DELETE FROM ${this.tableName}`;
+      if (condition) query += ` WHERE \`id\` = ${condition}`;
+      query += ";"
+      let result = this.connection.query( query, function (err, info) {
+          if (err)
+            throw err;
+      });
+    }
+};
